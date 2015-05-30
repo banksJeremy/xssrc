@@ -53,4 +53,6 @@ TO DO
  - Use an XSSRC- header to indicate requests that are not proxied.
  - Add very visible console logging on circuit clients, including the IPs of connecting
    controllers. Maybe persist some information (in a compact form) in localStorage, to enable a sort-of auditing.
+ - Alway use the older circuit that is stil responsive, to avoid uses from switching between sessions (though
+   that won't happen in ideal circuimstances anyway).
 */
