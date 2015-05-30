@@ -45,12 +45,12 @@ func main() {
 
 /*
 TO DO
+-  
 - After getting a request, wait some amount of time for a Circuit to
    become available to handle it, then send a 504 Gateway Timeout.
  - Always send 504 Gateway Timeout with a Refresh header
  - Support GET and POST requests, and arbitrary responses
  - Use an XSSRC- header to indicate requests that are not proxied.
- - Include X-Forwarded-Host in response, with destination hostname
- - Include X-Forwarded-For in response, with both destination IP and circuit IP
- - Add very visible console logging on circuit clients, including the IPs of connecting controllers. Maybe persist some information (in a compact form) in localStorage, to enable a sort-of auditing.
+ - Add very visible console logging on circuit clients, including the IPs of connecting
+   controllers. Maybe persist some information (in a compact form) in localStorage, to enable a sort-of auditing.
 */
