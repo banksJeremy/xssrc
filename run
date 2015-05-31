@@ -1,0 +1,6 @@
+#!/bin/bash -eu
+babel client/controller/*.es --out-file client/controller/compiled.js
+babel client/circuit/*.es --out-file client/circuit/compiled.js
+goimports -w .
+go run main.go
+
