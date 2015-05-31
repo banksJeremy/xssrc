@@ -24,18 +24,22 @@ type Circuit struct {
 	ExitKey            string
 }
 
+// Handles a new circuit websocket connection, through which requests may be proxied.
 func circuitHandler(ws *websocket.Conn) {
 	fmt.Println("Got WS connection ", ws)
 }
 
-func placeholderRedirectHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Got HTTP request", w, r)
+// Handles a request from the browser, to be proxied if possible.
+func browserHandler(w http.ResponseWriter, r *http.Request) {
+	// placeholder:
+	http.Redirect(w, r, "/__xssrc__/browser", 302)
 }
 
 func main() {
-	http.Handle("/__xssrc__/circut-connection", websocket.Handler(circuitHandler))
-	http.Handle("/__xssrc__/", http.FileServer(http.Dir("static")))
-	http.Handle("/", http.HandlerFunc(placeholderRedirectHandler))
+	http.Handle("/__xssrc__/circut/connection", websocket.Handler(circuitHandler))
+	http.Handle("/__xssrc__/",
+		http.StripPrefix("/__xssrc__", http.FileServer(http.Dir("./client"))))
+	http.Handle("/", http.HandlerFunc(browserHandler))
 
 	fmt.Println("Starting HTTP server")
 	err := http.ListenAndServe("0.0.0.0:8080", nil)
