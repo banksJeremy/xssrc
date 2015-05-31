@@ -3,8 +3,9 @@ package main
 
 import (
 	"fmt"
-	"golang.org/x/net/websocket"
 	"net/http"
+
+	"golang.org/x/net/websocket"
 )
 
 type Circuit struct {
@@ -13,13 +14,13 @@ type Circuit struct {
 	exitKey            string
 }
 
-func circuitHandler(ws *webSocket.Conn) {
+func circuitHandler(ws *websocket.Conn) {
 	fmt.Println("Got connection ", ws)
 }
 
 func main() {
 	http.Handle("/__xssrc__/circut-connection", websocket.Handler(circuitHandler))
-	http.Handle("/__xssrc__", http.FileServer(http.Dir("static"))
+	http.Handle("/__xssrc__", http.FileServer(http.Dir("static")))
 
 	fmt.Println(&Circuit{})
 
